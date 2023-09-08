@@ -4,16 +4,23 @@ import { nanoid } from 'nanoid';
 import { FormPhonebook } from './FormPhonebook/FormPhonebook';
 
 export class App extends Component {
-  nameInputId = nanoid();
+  contactId = nanoid();
 
   state = {
     contacts: [],
     name: '',
   };
 
-  handleChange(e) {
-    console.log('Hello');
-  }
+  handleChange = e => {
+    const { name, value } = e.currentTarget;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+  };
 
   render() {
     return (
@@ -25,8 +32,11 @@ export class App extends Component {
       >
         <GlobalStyle />
         <FormPhonebook
-          nameInputId={this.nameInputId}
+          contactId={this.contactId}
+          name={this.state.name}
+          number={this.state.number}
           handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
       </div>
     );
