@@ -1,25 +1,16 @@
 import { GlobalStyle } from './GlobalStyle';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { FormPhonebook } from './FormPhonebook/FormPhonebook';
+import { Form } from './Form/Form';
+import { ContactsList } from './ContactsList/ContactsList';
 
 export class App extends Component {
-  contactId = nanoid();
-
   state = {
     contacts: [],
-    name: '',
   };
 
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
+  formSubmitHandler = dataForm => {
+    this.state.contacts.push({ id: nanoid(), ...dataForm });  
   };
 
   render() {
@@ -31,13 +22,8 @@ export class App extends Component {
         }}
       >
         <GlobalStyle />
-        <FormPhonebook
-          contactId={this.contactId}
-          name={this.state.name}
-          number={this.state.number}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <Form onFormSubmit={this.formSubmitHandler} />
+        <ContactsList contacts={this.state.contacts} />
       </div>
     );
   }
