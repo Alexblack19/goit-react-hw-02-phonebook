@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export const Contact = ({ item: { name, number } }) => {
   return (
     <p>
-      {`${name}:`}
+      {name}&#58;
       <span>&nbsp;{number}</span>
     </p>
   );
