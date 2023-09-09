@@ -22,9 +22,19 @@ export class App extends Component {
     }));
   };
 
-  changeFilter = e => {this.setState({filter: e.currentTarget.value})};
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
 
-  render() {
+  filterContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+ 
+  render() {      
     return (
       <div
         style={{
@@ -35,9 +45,12 @@ export class App extends Component {
         <GlobalStyle />
         <h1>Phonebook</h1>
         <ContactForm onFormSubmit={this.formSubmitHandler} />
-        <Filter valueFilter={this.state.filter} onChangeFilter={this.changeFilter}/>
+        <Filter
+          valueFilter={this.state.filter}
+          onChangeFilter={this.changeFilter}
+        />
         <h2>Contacts</h2>
-        <ContactList contacts={this.state.contacts} />
+        <ContactList filterContacts={this.filterContacts()} />
       </div>
     );
   }

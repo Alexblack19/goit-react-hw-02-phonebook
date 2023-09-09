@@ -1,9 +1,9 @@
 import { Contact } from '../Contact/Contact';
 
-export function ContactList({ contacts }) {
+export function ContactList({ filterContacts }) {
   return (
     <ul>
-      {contacts.map(item => (
+      {filterContacts.map(item => (
         <li key={item.id}>
           <Contact item={item} />
         </li>
