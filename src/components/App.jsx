@@ -12,7 +12,7 @@ export class App extends Component {
   formSubmitHandler = dataForm => {
     this.setState(prev => ({
       contacts: [...prev.contacts, { id: nanoid(), ...dataForm }],
-    }));
+    }));    
   };
 
   render() {

@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
 
-export const Contact = ({ item }) => {
+export const Contact = ({ item: { name, number } }) => {
   return (
     <p>
-      {/* {item.name}:<span>{item.number}</span> */}
-      {`${item.name}:`}
-      <span>{item.number}</span>
+      {`${name}:`}
+      <span>&nbsp;{number}</span>
     </p>
   );
 };
 
 Contact.propTypes = {
-  item: PropTypes.shape().isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }).isRequired,
 };
