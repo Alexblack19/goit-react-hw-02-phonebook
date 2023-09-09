@@ -15,27 +15,33 @@ export class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onFormSubmit({...this.state});
+    this.props.onFormSubmit({ ...this.state });
+    this.clearForm();
   };
+
+  clearForm() {
+    this.setState({ name: '', number: '' });
+  }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} >
         <label>
-          Name
+          <span>Name</span>
           <input
             placeholder="Enter name"
             type="text"
             name="name"
             value={this.state.name}
-            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$" 
+            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             onChange={this.handleChange}
           />
         </label>
+
         <label>
-          Number
+          <span>Number</span>
           <input
             type="tel"
             placeholder="+(380) XXX XXX XXX"
