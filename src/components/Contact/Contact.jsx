@@ -1,5 +1,4 @@
-export const Contact = ({ item }) => {
-    console.log(item);
+export const Contact = ({ item }) => {   
   return (
     <>
       {item && (
