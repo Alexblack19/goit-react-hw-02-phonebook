@@ -1,4 +1,4 @@
-export function ContactsList({ contacts }) {
+export function ContactList({ contacts }) {
     console.log(contacts);
   return (
     <ul>

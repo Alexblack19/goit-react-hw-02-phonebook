@@ -1,19 +1,20 @@
 import { Component } from 'react';
 
-export class Form extends Component {
+export class ContactForm extends Component {
   state = {
-    name: '',    
+    name: '',
+    number: '',
   };
 
   handleChange = e => {
     const { name, value } = e.currentTarget;
-    this.setState({      
+    this.setState({
       [name]: value,
     });
   };
 
   handleSubmit = e => {
-    e.preventDefault();   
+    e.preventDefault();
     this.props.onFormSubmit(this.state);
   };
 

@@ -1,8 +1,8 @@
 import { GlobalStyle } from './GlobalStyle';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Form } from './Form/Form';
-import { ContactsList } from './ContactsList/ContactsList';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
@@ -10,7 +10,7 @@ export class App extends Component {
   };
 
   formSubmitHandler = dataForm => {
-    this.state.contacts.push({ id: nanoid(), ...dataForm });  
+    this.state.contacts.push({ id: nanoid(), ...dataForm });
   };
 
   render() {
@@ -22,8 +22,10 @@ export class App extends Component {
         }}
       >
         <GlobalStyle />
-        <Form onFormSubmit={this.formSubmitHandler} />
-        <ContactsList contacts={this.state.contacts} />
+        <h1>Phonebook</h1>
+        <ContactForm onFormSubmit={this.formSubmitHandler} />
+        <h2>Contacts</h2>
+        <ContactList contacts={this.state.contacts} />
       </div>
     );
   }
