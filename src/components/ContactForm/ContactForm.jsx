@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import {Form, Label, Span, Input, Submit} from './ContactForm.styled.js'
 
 export class ContactForm extends Component {
   state = {
@@ -25,10 +27,10 @@ export class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
-        <label>
-          <span>Name</span>
-          <input
+      <Form onSubmit={this.handleSubmit}>
+        <Label>
+          <Span>Name</Span>
+          <Input
             placeholder="Enter name"
             type="text"
             name="name"
@@ -38,11 +40,11 @@ export class ContactForm extends Component {
             required
             onChange={this.handleChange}
           />
-        </label>
+        </Label>
 
-        <label>
-          <span>Number</span>
-          <input
+        <Label>
+          <Span>Number</Span>
+          <Input
             type="tel"
             placeholder="+(380) XXX XXX XXX"
             name="number"
@@ -52,9 +54,16 @@ export class ContactForm extends Component {
             required
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </Label>
+        <Submit type="submit">Add contact</Submit>
+      </Form>
     );
   }
 }
+
+ContactForm.propTypes = {
+  state: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }),
+};

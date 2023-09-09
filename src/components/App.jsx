@@ -1,57 +1,85 @@
-import { GlobalStyle } from './GlobalStyle';
+import { GlobalStyle, Container, MainTitle, Title } from './GlobalStyle';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
+import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
+      { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
+      { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
+      { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
 
   formSubmitHandler = dataForm => {
-    this.setState(prev => ({
-      contacts: [...prev.contacts, { id: nanoid(), ...dataForm }],
-    }));
+    this.state.contacts.some(
+      contact => contact.name.toLowerCase() === dataForm.name.toLowerCase()
+    )
+      ? this.Notification(dataForm.name)
+      : this.setState(prev => ({
+          contacts: [...prev.contacts, { id: nanoid(), ...dataForm }],
+        }));
   };
+
+  Notification(name) {
+    Notiflix.Notify.warning(`${name} is already in your contact list.`, {
+      position: 'center-center',
+      fontSize: '16px',
+    });
+  }
 
   changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+    this.setState({ filter: e.currentTarget.value.trim() });
   };
 
-  filterContacts = () => {
+  filterContacts() {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
+  }
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
- 
-  render() {      
+
+  render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          color: '#010101',
-        }}
-      >
+      <Container>
         <GlobalStyle />
-        <h1>Phonebook</h1>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onFormSubmit={this.formSubmitHandler} />
         <Filter
           valueFilter={this.state.filter}
           onChangeFilter={this.changeFilter}
         />
-        <h2>Contacts</h2>
-        <ContactList filterContacts={this.filterContacts()} />
-      </div>
+        <Title>Contacts</Title>
+        <ContactList
+          filterContacts={this.filterContacts()}
+          deleteContact={this.deleteContact}
+        />
+      </Container>
     );
   }
 }
+
+App.propTypes = {
+  state: PropTypes.shape({
+    contacts: PropTypes.arrayOf({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired,
+    filter: PropTypes.string.isRequired,
+  }),
+};
