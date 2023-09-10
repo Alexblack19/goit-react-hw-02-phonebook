@@ -9,9 +9,8 @@ export const Number = styled.span`
 `;
 
 export const Button = styled.button`
-  margin-left: auto;
-  width: 80px;
-  padding: 4px 4px;
+  width: 60px;
+  padding: 2px 2px;
   font-size: 14px;
   cursor: pointer;
   border: 1px solid #000000;
