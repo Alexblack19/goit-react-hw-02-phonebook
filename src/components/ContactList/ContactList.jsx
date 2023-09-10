@@ -1,24 +1,21 @@
 import { Contact } from '../Contact/Contact';
 import PropTypes from 'prop-types';
-import {List, Item} from './ContactList.styled';
+import { List, Item } from './ContactList.styled';
 
 export function ContactList({ filterContacts, deleteContact }) {
-  return (   
-   
-    
-
-
-
-<List>
-  {filterContacts.map(item => (
-    <Item key={item.id}>
-      <Contact item={item} deleteContact={deleteContact} />
-    </Item>
-  ))}
-</List>
-
-    
-    
+  return (
+    <List>
+      {filterContacts.map(item => (
+        <Item key={item.id}>
+          {filterContacts ? (
+            <Contact item={item} deleteContact={deleteContact} />
+          ) : (
+            <p>No contacts</p>
+          )}
+          {/* <Contact item={item} deleteContact={deleteContact} /> */}
+        </Item>
+      ))}
+    </List>
   );
 }
 
