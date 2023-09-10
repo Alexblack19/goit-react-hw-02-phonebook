@@ -14,3 +14,7 @@ export const Item = styled.li`
   }
   
 `;
+export const Text = styled.p`
+  text-align: center;
+  font-weight: 600;
+`;
