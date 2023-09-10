@@ -53,7 +53,7 @@ export class App extends Component {
     }));
   };
 
-  render() {   
+  render() {
     return (
       <Container>
         <GlobalStyle />

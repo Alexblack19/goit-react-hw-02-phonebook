@@ -12,7 +12,6 @@ export const Item = styled.li`
     color: #5f2ea0;
     font-size: 20px;
   }
-  
 `;
 export const Text = styled.p`
   text-align: center;

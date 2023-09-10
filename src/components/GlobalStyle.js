@@ -41,6 +41,7 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
+  font-size: 18px;
   background-image: radial-gradient(
     circle at 50% -20.71%,
     #ffffff 0,
