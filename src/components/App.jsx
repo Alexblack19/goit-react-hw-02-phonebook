@@ -59,11 +59,11 @@ export class App extends Component {
         <GlobalStyle />
         <MainTitle>Phonebook</MainTitle>
         <ContactForm onFormSubmit={this.formSubmitHandler} />
+        <Title>Contacts</Title>
         <Filter
           valueFilter={this.state.filter}
           onChangeFilter={this.changeFilter}
         />
-        <Title>Contacts</Title>
         <ContactList
           filterContacts={this.filterContacts()}
           deleteContact={this.deleteContact}

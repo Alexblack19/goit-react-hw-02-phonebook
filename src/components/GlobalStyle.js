@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  
+  font-size: 18px;
   background-image: url(${phonebook});  
   background-position: 50% 50%;  
 }
@@ -30,8 +31,7 @@ p {
 ul {  
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-left: 0px;
-  list-style: none;
+  padding-left: 0px; 
 }  
 `;
 
@@ -57,14 +57,11 @@ export const Container = styled.div`
 `;
 
 export const MainTitle = styled.h1`
-font-style: italic;
   font-size: 36px;
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 export const Title = styled.h2`
-font-style: italic;
   font-size: 28px;
-  text-align: center;
+  text-align: center;  
 `;
