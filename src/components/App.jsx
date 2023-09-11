@@ -5,7 +5,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import Notiflix from 'notiflix';
-import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -72,14 +71,3 @@ export class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  state: PropTypes.shape({
-    contacts: PropTypes.arrayOf({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired,
-    filter: PropTypes.string.isRequired,
-  }),
-};
